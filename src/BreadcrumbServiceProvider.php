@@ -29,7 +29,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            $this->config => config_path('breadcrumb')
+            $this->config => config_path('breadcrumb.php')
         ], 'breadcrumb');
 
         require config('breadcrumb.breadcrumb-file');

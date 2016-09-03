@@ -2,5 +2,5 @@
 
 return [
     'breadcrumb-file' => app_path('Http/breadcrumb.php'),
-    'default-template' => 'breadcrumb::templatedd'
+    'default-template' => 'breadcrumb::template'
 ];
