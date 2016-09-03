@@ -1,5 +1,7 @@
 {
     "name": "yasiao/laravel-breadcrumb",
+    "description" : "A simple breadcrumbs generator.",
+    "keywords" : ["laravel", "breadcrumb"],
     "authors": [
         {
             "name": "Ya-Jie Siao",
