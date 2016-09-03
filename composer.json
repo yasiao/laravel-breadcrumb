@@ -1,0 +1,15 @@
+{
+    "name": "yasiao/laravel-breadcrumb",
+    "authors": [
+        {
+            "name": "Ya-Jie Siao",
+            "email": "syj610226@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Yasiao\\Breadcrumb\\": "src"
+        }
+    }
+}
