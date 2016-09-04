@@ -32,7 +32,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
             $this->config => config_path('breadcrumb.php')
         ], 'breadcrumb');
 
-        require config('breadcrumb.breadcrumb-file');
+        require config('breadcrumb.breadcrumb-file-path');
     }
 
     /**
