@@ -36,7 +36,7 @@ return [
 
 ### Create the breadcrumb file in breadcrumb-file-path.
 
-### Register breadcrumbs
+### Define breadcrumbs
 
 in breadcrumb-file-path
 
@@ -44,27 +44,27 @@ Without parameters:
 
 ```php
 // Home
-Breadcrumb::register('home', function ($breadcrumb, $category, $content) {
-    $breadcrumb->push('Home', action('HomeController@index'));
+Breadcrumb::define('home', function ($breadcrumb, $category, $content) {
+    $breadcrumb->add('Home', action('HomeController@index'));
 });
 ```
 With a parameter:
 
 ```php
 // Home > $category->title
-Breadcrumb::register('category', function ($breadcrumb, $content) {
-    $breadcrumb->push('Home', action('HomeController@index'));
-    $breadcrumb->push($category->title, $category->url);
+Breadcrumb::define('category', function ($breadcrumb, $content) {
+    $breadcrumb->add('Home', action('HomeController@index'));
+    $breadcrumb->add($category->title, $category->url);
 });
 ```
 With parameters:
 
 ```php
 // Home > $category['title'] > $content->title
-Breadcrumb::register('content', function ($breadcrumb, $category, $content) {
-    $breadcrumb->push('Home', action('HomeController@index'));
-    $breadcrumb->push($category['title'], $category['id']);
-    $breadcrumb->push($content->title, $content->url);
+Breadcrumb::define('content', function ($breadcrumb, $category, $content) {
+    $breadcrumb->add('Home', action('HomeController@index'));
+    $breadcrumb->add($category['title'], $category['id']);
+    $breadcrumb->add($content->title, $content->url);
 });
 ```
 
@@ -88,7 +88,7 @@ With parameters:
 
 ## Advanced Usage
 
-### The breadcrumb use special template.
+### The breadcrumb use the special template.
 
 ```php
 {!! Breadcrumbs::setTemplate('template2')->render('home') !!}

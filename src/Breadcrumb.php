@@ -12,17 +12,31 @@ class Breadcrumb
     private $template;
 
     /**
-     * Register a breadcrumb.
+     * Add a title and a URL into the breadcrumbs.
+     *
+     * @param      $title
+     * @param null $url
+     */
+    public function add($title, $url = null)
+    {
+        $this->breadcrumbs[] = (object) [
+            'title' => $title,
+            'url' => $url
+        ];
+    }
+
+    /**
+     * Define a breadcrumb.
      *
      * @param string   $name
      * @param Callable $callback
      *
      * @throws Exception
      */
-    public function register($name, $callback)
+    public function define($name, $callback)
     {
         if (array_key_exists($name, $this->callbacks)) {
-            throw new Exception("The breadcrumb ($name) has been registered.");
+            throw new Exception("The breadcrumb ($name) has been defined.");
         }
 
         $this->callbacks[$name] = $callback;
@@ -62,20 +76,6 @@ class Breadcrumb
         $this->template = $name;
 
         return $this;
-    }
-
-    /**
-     * Push a title and a URL into breadcrumbs
-     *
-     * @param      $title
-     * @param null $url
-     */
-    public function push($title, $url = null)
-    {
-        $this->breadcrumbs[] = (object) [
-            'title' => $title,
-            'url' => $url
-        ];
     }
 
     /**

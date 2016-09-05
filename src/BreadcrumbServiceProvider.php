@@ -36,6 +36,16 @@ class BreadcrumbServiceProvider extends ServiceProvider
     }
 
     /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [Breadcrumb::class];
+    }
+
+    /**
      * Register the service provider.
      *
      * @return void
@@ -51,15 +61,5 @@ class BreadcrumbServiceProvider extends ServiceProvider
 
             return $breadcrumb;
         });
-    }
-
-    /**
-     * Get the services provided by the provider.
-     *
-     * @return array
-     */
-    public function provides()
-    {
-        return [Breadcrumb::class];
     }
 }
