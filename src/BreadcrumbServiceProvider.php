@@ -32,6 +32,10 @@ class BreadcrumbServiceProvider extends ServiceProvider
             $this->config => config_path('breadcrumb.php')
         ], 'breadcrumb');
 
+        if (!$this->checkBreadcrumbFileExist()) {
+            throw new FileNotFoundException('The Breadcrumb file is not found in ' . config('breadcrumb.breadcrumb-file-path'));
+        }
+
         require config('breadcrumb.breadcrumb-file-path');
     }
 
@@ -61,5 +65,15 @@ class BreadcrumbServiceProvider extends ServiceProvider
 
             return $breadcrumb;
         });
+    }
+
+    /**
+     * Check the breadcrumb file already exist.
+     *
+     * @return bool
+     */
+    private function checkBreadcrumbFileExist()
+    {
+        return file_exists(config('breadcrumb.breadcrumb-file-path'));
     }
 }
