@@ -54,6 +54,10 @@ class Breadcrumb
     public function render($name)
     {
         if (!array_key_exists($name, $this->callbacks)) {
+            if (config('breadcrumb.ignore-not-define-breadcrumb', false)) {
+                return null;
+            }
+
             throw new Exception("Breadcrumb $name is not found.");
         }
 

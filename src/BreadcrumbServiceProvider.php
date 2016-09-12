@@ -19,7 +19,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    private $config = __DIR__ . '/../config/breadcrumbs.php';
+    private $config = __DIR__ . '/../config/breadcrumb.php';
 
     /**
      * Bootstrap any application services.

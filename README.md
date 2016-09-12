@@ -44,7 +44,7 @@ Without parameters:
 
 ```php
 // Home
-Breadcrumb::define('home', function ($breadcrumb, $category, $content) {
+Breadcrumb::define('home', function ($breadcrumb) {
     $breadcrumb->add('Home', action('HomeController@index'));
 });
 ```
