@@ -54,7 +54,7 @@ class Breadcrumb
     public function render($name)
     {
         if (!array_key_exists($name, $this->callbacks)) {
-            if (config('breadcrumb.ignore-not-define-breadcrumb', false)) {
+            if (config('breadcrumb.ignore-undefined-breadcrumb', false)) {
                 return null;
             }
 

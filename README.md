@@ -28,68 +28,67 @@ aliases:
 ```php
 return [
     'breadcrumb-file-path' => app_path('Http/breadcrumb.php'),
-    'default-template' => 'breadcrumb::template'
+    'default-template' => 'breadcrumb::template',
+    'ignore-undefined-breadcrumb' => false
 ];
 ```
 
 ## Base Usage
 
-### Create the breadcrumb file in breadcrumb-file-path.
+1. Create the breadcrumb file in the **"breadcrumb-file-path"**.
 
-### Define breadcrumbs
+2. Define breadcrumbs in the breadcrumb file.
 
-in breadcrumb-file-path
+    Without parameters:
 
-Without parameters:
+    ```php
+    // Home
+    Breadcrumb::define('home', function ($breadcrumb) {
+        $breadcrumb->add('Home', action('HomeController@index'));
+    });
+    ```
+    With a parameter:
 
-```php
-// Home
-Breadcrumb::define('home', function ($breadcrumb) {
-    $breadcrumb->add('Home', action('HomeController@index'));
-});
-```
-With a parameter:
+    ```php
+    // Home > $category->title
+    Breadcrumb::define('category', function ($breadcrumb, $category) {
+        $breadcrumb->add('Home', action('HomeController@index'));
+        $breadcrumb->add($category->title, $category->url);
+    });
+    ```
+    With parameters:
 
-```php
-// Home > $category->title
-Breadcrumb::define('category', function ($breadcrumb, $content) {
-    $breadcrumb->add('Home', action('HomeController@index'));
-    $breadcrumb->add($category->title, $category->url);
-});
-```
-With parameters:
+    ```php
+    // Home > $category['title'] > $content->title
+    Breadcrumb::define('content', function ($breadcrumb, $category, $content) {
+        $breadcrumb->add('Home', action('HomeController@index'));
+        $breadcrumb->add($category['title'], $category['id']);
+        $breadcrumb->add($content->title, $content->url);
+    });
+    ```
 
-```php
-// Home > $category['title'] > $content->title
-Breadcrumb::define('content', function ($breadcrumb, $category, $content) {
-    $breadcrumb->add('Home', action('HomeController@index'));
-    $breadcrumb->add($category['title'], $category['id']);
-    $breadcrumb->add($content->title, $content->url);
-});
-```
+3. Render breadcrumbs.
 
-### Render the breadcrumbs
+    Without parameters:
 
-Without parameters:
+    ```php
+    {!! Breadcrumbs::render('home') !!}
+    ```
+    With a parameter:
 
-```php
-{!! Breadcrumbs::render('home') !!}
-```
-With a parameter:
+    ```php
+    {!! Breadcrumbs::render('home', $category) !!}
+    ```
+    With parameters:
 
-```php
-{!! Breadcrumbs::render('home', $category) !!}
-```
-With parameters:
-
-```php
-{!! Breadcrumbs::render('home', $category, $content) !!}
-```
+    ```php
+    {!! Breadcrumbs::render('home', $category, $content) !!}
+    ```
 
 ## Advanced Usage
 
-### The breadcrumb use the special template.
+1. The breadcrumb use the special template.
 
-```php
-{!! Breadcrumbs::setTemplate('template2')->render('home') !!}
-```
+    ```php
+    {!! Breadcrumbs::setTemplate('template2')->render('home') !!}
+    ```

@@ -2,6 +2,7 @@
 
 namespace Yasiao\Breadcrumb;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class BreadcrumbServiceProvider extends ServiceProvider
@@ -19,7 +20,19 @@ class BreadcrumbServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    private $config = __DIR__ . '/../config/breadcrumb.php';
+    private $config = null;
+
+    /**
+     * BreadcrumbServiceProvider constructor.
+     *
+     * @param Application $app
+     */
+    public function __construct(Application $app)
+    {
+        parent::__construct($app);
+
+        $this->config = dirname(__DIR__) . '/config/breadcrumb.php';
+    }
 
     /**
      * Bootstrap any application services.
