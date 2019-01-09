@@ -90,7 +90,7 @@ class Breadcrumb
      *
      * @return array
      */
-    private function generate($name, $parameters)
+    public function generate($name, $parameters)
     {
         $this->breadcrumbs = [];
 

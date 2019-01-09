@@ -1,6 +1,6 @@
 # Laravel-Breadcrumb
 
-A simple breadcrumbs generator.
+A simple breadcrumb generator.
 
 ## Installation
 
@@ -28,7 +28,7 @@ aliases:
 ```php
 return [
     'breadcrumb-file-path' => app_path('Http/breadcrumb.php'),
-    'default-template' => 'breadcrumb::template',
+    'default-template' => 'breadcrumb::bootstrap4',
     'ignore-undefined-breadcrumb' => false
 ];
 ```
@@ -62,7 +62,7 @@ return [
     // Home > $category['title'] > $content->title
     Breadcrumb::define('content', function ($breadcrumb, $category, $content) {
         $breadcrumb->add('Home', action('HomeController@index'));
-        $breadcrumb->add($category['title'], $category['id']);
+        $breadcrumb->add($category['title'], $category['url']);
         $breadcrumb->add($content->title, $content->url);
     });
     ```
@@ -90,5 +90,5 @@ return [
 1. The breadcrumb use the special template.
 
     ```php
-    {!! Breadcrumbs::setTemplate('template2')->render('home') !!}
+    {!! Breadcrumbs::setTemplate('bootstrap3')->render('home') !!}
     ```
